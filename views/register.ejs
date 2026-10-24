@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมัครสมาชิก</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>สมัครสมาชิก</h1>
+    <p class="subtitle">กรอกข้อมูลเพื่อสมัครสมาชิก</p>
+
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <form action="/register" method="POST">
+      <label for="first_name">ชื่อ</label>
+      <input
+        id="first_name"
+        name="first_name"
+        type="text"
+        value="<%= form.first_name || '' %>"
+        maxlength="100"
+        required
+      >
+
+      <label for="last_name">นามสกุล</label>
+      <input
+        id="last_name"
+        name="last_name"
+        type="text"
+        value="<%= form.last_name || '' %>"
+        maxlength="100"
+        required
+      >
+
+      <label for="email">อีเมล</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        value="<%= form.email || '' %>"
+        maxlength="255"
+        required
+      >
+
+      <label for="password">รหัสผ่าน</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        minlength="8"
+        required
+      >
+
+      <button type="submit">สมัครสมาชิก</button>
+    </form>
+
+    <p class="footer-link">
+      สมัครแล้วใช่ไหม?
+      <a href="/members">ดูรายชื่อสมาชิก</a>
+    </p>
+  </main>
+</body>
+</html>

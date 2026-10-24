@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายชื่อสมาชิก</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container wide">
+    <h1>รายชื่อสมาชิก</h1>
+    <p class="subtitle">
+      สมาชิกที่สมัครทั้งหมด <strong><%= members.length %></strong> คน
+    </p>
+
+    <% if (registered) { %>
+      <div class="alert success">
+        สมัครสมาชิกสำเร็จ!
+      </div>
+    <% } %>
+
+    <div class="actions">
+      <a class="button-link" href="/register">+ สมัครสมาชิกใหม่</a>
+    </div>
+
+    <% if (members.length === 0) { %>
+      <p class="empty">ยังไม่มีข้อมูลสมาชิก</p>
+    <% } else { %>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>ชื่อ - นามสกุล</th>
+              <th>อีเมล</th>
+              <th>วันที่สมัคร</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% members.forEach((member, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td>
+                  <%= member.first_name %>
+                  <%= member.last_name %>
+                </td>
+                <td><%= member.email %></td>
+                <td>
+                  <%= new Date(member.created_at).toLocaleString('th-TH', {
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
+                    timeZone: 'Asia/Bangkok'
+                  }) %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </main>
+</body>
+</html>
